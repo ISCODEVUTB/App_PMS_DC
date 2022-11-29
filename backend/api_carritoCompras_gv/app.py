@@ -1,14 +1,13 @@
 from flask import Flask, redirect, url_for, request,jsonify, session
 from flask_mysqldb import MySQL
 from os import getenv
-from flask_cors import CORS, cross_origin
+
 from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 csrf = CSRFProtect()
 csrf.init_app(app)
 #Conexion de la base de datos
-CORS(app, resources={r"/*": {"origins": "*"}})
 app.config ['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
 app.config ['MYSQL_USER'] = 'bbd292aa23aeaf'
 app.config ['MYSQL_PASSWORD'] = getenv('PASSWORD')

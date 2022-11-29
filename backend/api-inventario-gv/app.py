@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify #importar librerias
 from flask_mysqldb import MySQL #configuracion de la base de datos
 from requests import post #configuracion de la base de datos
-from flask_cors import CORS, cross_origin
+
 from flask_wtf.csrf import CSRFProtect
 from os import getenv
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 csrf = CSRFProtect()
 csrf.init_app(app)
-CORS(app, resources={r"/*": {"origins": "*"}})
+
 app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'#configuracion de la base de datos host
 app.config['MYSQL_USER'] = 'bbd292aa23aeaf'#configuracion de la base de datos usuario
 app.config['MYSQL_PASSWORD'] = getenv('PASSWORD') #configuracion de la base de datos contraseña
