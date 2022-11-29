@@ -90,9 +90,5 @@ def put_usuario(cedula):
     except ValueError:
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
 
-def pagina_no_encontrada(error):
-    return "<h1>Página no encontrada</h1>", 404
-
-
 if __name__== "__main__" :
     app.run(debug=True, port=5000)
