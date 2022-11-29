@@ -1,9 +1,11 @@
 from flask import Flask, redirect, url_for, request,jsonify, session
 from flask_mysqldb import MySQL
+from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
-
+csrf = CSRFProtect()
+csrf.init_app(app)
 #Conexion de la base de datos
 
 app.config ['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
