@@ -23,7 +23,7 @@ def index():
 
 # Se define la direccion de /add que seria cuando el usuario agrega un producto en el carrito de compras
 @app.route("/add", methods=['POST'])
-def add_product():
+def product():
     cursor = None
     try:
         # Aca se edita para cantidad del pedido del producto
