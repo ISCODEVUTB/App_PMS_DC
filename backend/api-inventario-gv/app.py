@@ -34,7 +34,7 @@ def get_vehiculo():#funcion de la pagina mostrar los datos de la tabla vehiculo
             dato = {'Id_vehiculo': fila[0], 'Nombre': fila[1], 'Modelo': fila[2] , 'Tipo': fila[3], 'Caracteristica': fila[4], 'Precio': fila[5], 'Descripcion': fila[6], 'Imagen': fila[7]}#se crea un diccionario para que se muestren los datos de los vehiculos
             vehiculos.append(dato)#se agrega los datos de los vehiculos a la lista
         return jsonify({'vehiculos': vehiculos, 'message': 'ok'})#se retorna los datos de los vehiculos y un mensaje de ok
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error   
 #leer los vehiculos por el Id_vehiculo
 @app.route('/stock/<codigo>', methods=['GET'])
@@ -49,7 +49,7 @@ def get_vehiculo_id(codigo):#funcion de la pagina leer los vehiculos por el Id_v
             return jsonify({'vehiculo': vehiculo, 'message': 'ok'})#se retorna los datos del vehiculo y un mensaje de ok
         else:#en caso de que no se encuentre el vehiculo se retorna un mensaje de error
             return jsonify({'message': 'error1'})#en caso de que haya un error se retorna un mensaje de error
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
 #registrar un vehiculo
 @app.route('/stock', methods=['POST'])
@@ -61,7 +61,7 @@ def post_vehiculo():#funcion de la pagina registrar un vehiculo
         cursor.execute(sql)#se ejecuta la consulta
         mysql.connection.commit()#guardar los cambios
         return jsonify({'message': 'vehiculo añadido'})#se retorna un mensaje de vehiculo añadido
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
 #actualizar vehiculo
 @app.route('/stock/<codigo>', methods=['PUT'])
@@ -73,7 +73,7 @@ def put_vehiculo(codigo):
         cursor.execute(sql)#se ejecuta la consulta
         mysql.connection.commit()#guardar los cambios
         return jsonify({'message': 'vehiculo actualizado'})#se retorna un mensaje de vehiculo actualizado
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
   
 #eliminar un vehiculo
@@ -86,7 +86,7 @@ def delete_vehiculo(codigo):#funcion de la pagina eliminar un vehiculo
         cursor.execute(sql)#se ejecuta la consulta
         mysql.connection.commit()#guardar los cambios
         return jsonify({'message': 'vehiculo borrado'})#se retorna un mensaje de vehiculo borrado
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})  #en caso de que haya un error se retorna un mensaje de error
     
 def pagina_no_encotrada(error):#funcion de la pagina no encontrada

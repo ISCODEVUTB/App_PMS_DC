@@ -26,7 +26,7 @@ def validar_cedula(cedula):
             return True
         else:
             return False
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
 def validar_correo(correo):
     try:#el try es para que si hay un error no se caiga el programa
@@ -37,7 +37,7 @@ def validar_correo(correo):
             return True
         else:
             return False
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
 @app.route('/')#ruta de la pagina inicial
 def hello_world():#funcion de la pagina inicial
@@ -55,7 +55,7 @@ def get_usuario():
             dato = {'Cedula': fila[0], 'Nombre y apellido': fila[1]+" "+ fila[2], 'Correo': fila[3]}#se crea un diccionario para que se muestren los datos de los usuarios
             personas.append(dato)#se agrega los datos de los usuarios a la lista
         return jsonify({'personas': personas, 'message': 'ok'})
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
 #registrar una persona
 @app.route('/signup', methods=['POST'])
@@ -74,7 +74,7 @@ def post_usuario():
             mysql.connection.commit()#guardar los cambios
             return jsonify({'message': 'persona añadida'})#se retorna un mensaje de vehiculo añadido
 
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error   
 
 @app.route('/signup/<cedula>', methods=['PUT'])
@@ -85,7 +85,7 @@ def put_usuario(cedula):
         cursor.execute(sql)#se ejecuta la consulta
         mysql.connection.commit()#guardar los cambios
         return jsonify({'message': 'persona actualizada'})#se retorna un mensaje de persona actualizada
-    except Exception as e:
+    except ValueError:
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
 
 def pagina_no_encontrada(error):

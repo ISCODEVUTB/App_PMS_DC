@@ -66,7 +66,7 @@ def add_product():
         else:
             return 'ERROR WHILE ADDING ITEM TO CART'
      # En el caso de que no se conecta con data.
-    except Exception as e:
+    except ValueError:
         return jsonify({'message': 'ERROR'})
 
 # Se define el /stock para visualizar el stock de los productos
@@ -81,7 +81,7 @@ def product():
             dato = {'Id_vehiculo': fila[0], 'Nombre': fila[1], 'Modelo': fila[2] , 'Tipo': fila[3], 'Caracteristica': fila[4], 'Cantidad': fila[5] , 'Precio': fila[6]}
             vehiculos.append(dato)
         return jsonify({'vehiculos': vehiculos, 'message': 'OK'})
-    except Exception as e:
+    except ValueError:
         return jsonify({'message':'ERROR'})
 
 # Se define el /empty para saber si esta conectado a una seccion de
@@ -90,7 +90,7 @@ def empty_cart():
     try:
         session.clear()
         return redirect(url_for('.product'))
-    except Exception as e:
+    except ValueError:
         return jsonify({'message': 'ERROR'})
 
 
@@ -117,7 +117,7 @@ def delete_product(code):
             session['all_total_quantity'] = all_total_quantity
             session['all_total_price'] = all_total_price
         return redirect (url_for('.products'))
-    except Exception as e:
+    except ValueError:
         return jsonify({'message': 'ERROR'})
 
 

@@ -24,7 +24,7 @@ def obtener_id(correo): #se usa para mostrar los datos de la tabla persona
         datos = cursor.fetchone()
         print(datos[0])
         return datos[0]
-    except Exception as e:
+    except ValueError:
         print("no se pudo")
         return False
 
@@ -48,7 +48,7 @@ def get_vehiculo_venta(correo):#funcion de la pagina leer los vehiculos por el I
             return jsonify({'vehiculo': vehiculo, 'message': 'ok'})#se retorna los datos del vehiculo y un mensaje de ok
         else:#en caso de que no se encuentre el vehiculo se retorna un mensaje de error
             return jsonify({'message': 'error 1'})#en caso de que haya un error se retorna un mensaje de error
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error'})#en caso de que haya un error se retorna un mensaje de error
 #funcion para insertar vehiculos a la base de datos    
 def insertar_vehiculo(nombre,modelo,caracteristica,precio):
@@ -59,7 +59,7 @@ def insertar_vehiculo(nombre,modelo,caracteristica,precio):
         cursor.execute(sql)#se ejecuta la consulta
         mysql.connection.commit()#guardar los cambios
         return True
-    except Exception as e:
+    except ValueError:
         return False
 #funcion para insertar ventas a la base de datos    
 
@@ -70,7 +70,7 @@ def extraer():
         cursor.execute("select Id_vehiculo from heroku_978ea61906c2949.vehiculos order by Id_vehiculo desc LIMIT 1")#se ejecuta la consulta
         datos = cursor.fetchone()
         return datos[0]
-    except Exception as e:
+    except ValueError:
         return False
 #registrar un vehiculo
 @app.route('/venta/<correo>', methods=['POST'])
@@ -89,7 +89,7 @@ def venta_vehiculos(correo):#funcion de la pagina registrar un vehiculo
                 return jsonify({'message': 'vehiculo vendido'})#se retorna un mensaje de vehiculo añadido
             return jsonify({'message': 'error 1!'})#en caso de que haya un error se retorna un mensaje de error
         return jsonify({'message': 'error 2!'})#en caso de que haya un error se retorna un mensaje de error
-    except Exception as e:#el except es para que si hay un error no se caiga el programa
+    except ValueError:#el except es para que si hay un error no se caiga el programa
         return jsonify({'message': 'error 3!'})#en caso de que haya un error se retorna un mensaje de error
     
 if __name__ == '__main__':#se ejecuta el programa
