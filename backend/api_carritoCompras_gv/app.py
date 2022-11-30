@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, request,jsonify, session
 from flask_mysqldb import MySQL
+from controller import *
 from os import getenv
 
 from flask_wtf.csrf import CSRFProtect
@@ -16,7 +17,6 @@ app.config ['MYSQL_DB'] = 'heroku_978ea61906c2949'
 mysql = MySQL(app)
 
 # Se define la direccion / en este caso para comprobar el funcionamiento
-
 @app.route('/')
 def index():
     return 'Hello word, Its an API'
@@ -83,7 +83,6 @@ def product():
         return jsonify({'vehiculos': vehiculos, 'message': 'OK'})
     except ValueError:
         return jsonify({'message':'ERROR'})
-
 # Se define el /empty para saber si esta conectado a una seccion de
 @app.route('/empty')
 def empty_cart():
@@ -93,8 +92,6 @@ def empty_cart():
     except ValueError:
         return jsonify({'message': 'ERROR'})
 
-
-# Se define /delete de un producto en especifico para quitar este producto del carrito de compras
 @app.route('/delete/<string:code>')
 def delete_product(code):
     try:
@@ -119,19 +116,6 @@ def delete_product(code):
         return redirect (url_for('.products'))
     except ValueError:
         return jsonify({'message': 'ERROR'})
-
-
-
-
-def array_merge( first_array, second_array):
-    if isinstance( first_array, list) and isinstance( second_array, list):
-        return first_array + second_array
-    elif isinstance ( first_array, dict) and isinstance (second_array, dict ):
-        return dict(list (first_array.items()) + list (second_array.items() ) )
-    elif isinstance( first_array, set) and isinstance (second_array, set):
-        return first_array.union (second_array)
-    return False
-
 
 if __name__=="__main__":
     app.run(debug=True, port=4000)
