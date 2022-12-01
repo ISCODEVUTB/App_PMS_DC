@@ -1,0 +1,98 @@
+.carros{
+    margin-left: 30px;
+    padding: 20px;
+    background-color: #2d5474;
+    width:1000px;
+    height: 700px;
+    border-radius: 4px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 20px;
+    
+}
+
+.vehiculos_{
+    width: 100%;
+    height: auto;
+    overflow:auto;
+}
+
+.nav_lista{
+    display: grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.vehiculo{
+    display: grid;
+}
+
+#vehiculos{
+    overflow: cover;
+}
+
+#descripcion{
+    text-align: center;
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h2{
+    color:white;
+    margin: 20px;
+    display: block;
+}
+
+.car{
+    align-content: center;
+    width: 1000px;
+}
+
+.shop{
+    padding: 20px;
+    color: white;
+    margin-left: 350px;
+    font-size: 40px;
+    opacity: 0.4;
+}
+
+.card{
+    width: 340px;
+    height: 340px;
+    border-color: aqua;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px rgb(44, 51, 73);
+    overflow: hidden;
+    background-color: #1F4385;
+    text-align: center;
+}
+
+.card p{
+    padding: 20px;
+    color: aliceblue;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.card h5{
+    color: white;
+}
